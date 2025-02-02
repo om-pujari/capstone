@@ -6,6 +6,8 @@ from .models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from Bike.models import Bike
+from .forms import UserUpdateForm
+from Query.models import Query
 
 class RegisterView(CreateView):
     model = User
@@ -40,3 +42,25 @@ def toggle_wishlist(request, bike_id):
     else:
         request.user.wishlist.add(bike)
     return redirect('Bikes:detail', pk=bike.id)
+
+@login_required
+def user_profile(request):
+    user = request.user
+    queries = Query.objects.filter(user=user)  # Fetch user queries
+    wishlist = user.wishlist.all()  # Fetch wishlist items
+
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('User:profile')
+
+    else:
+        form = UserUpdateForm(instance=user)
+
+    context = {
+        'form': form,
+        'queries': queries,
+        'wishlist': wishlist,
+    }
+    return render(request, 'user/profile.html', context)

@@ -10,4 +10,5 @@ urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('wishlist/toggle/<int:bike_id>/', views.toggle_wishlist, name='toggle_wishlist'),
+    path('profile/', views.user_profile, name='profile'),
 ]

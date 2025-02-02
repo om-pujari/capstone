@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+{% block content %}
+<h2>My Profile</h2>
+
+<!-- User Info Form -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Profile</button>
+</form>
+
+<hr>
+
+<!-- User Queries -->
+<h3>My Queries</h3>
+<ul>
+    {% for query in queries %}
+    <li>{{ query.message }} - <strong>Status:</strong> {{ query.status }}</li>
+    {% empty %}
+    <li>No queries found.</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<!-- Wishlist Items -->
+<h3>My Wishlist</h3>
+<ul>
+    {% for bike in wishlist %}
+    <li>{{ bike.name }} - <a href="{% url 'Bikes:detail' bike.id %}">View</a></li>
+    {% empty %}
+    <li>No items in wishlist.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

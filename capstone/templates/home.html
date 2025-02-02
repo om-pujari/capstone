@@ -83,8 +83,7 @@
         <a href="{% url 'visit' %}">Visit Us</a>
         <a href="{% url 'contact:query' %}">Contact Us </a>
         {% if user.is_authenticated %}
-        <a href="#">Profile</a>
-        <a href="#">Wishlist</a>
+        <a href="{% url 'User:profile' %}">My Profile</a>
         <a href="{% url 'User:logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'User:login' %}">Login</a>
