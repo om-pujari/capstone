@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .company-logo {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .menu-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .menu-btn:hover {
+            background: #45a049;
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #444;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-menu.active {
+            display: block;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+        }
+
+        .nav-menu a:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <a href="/" class="company-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M4 16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v8zm13-7h3v2h-3V9zM4 9h3v2H4V9zm0 4h3v2H4v-2zm13 0h3v2h-3v-2z"/>
+        </svg>
+        E-Bike.
+    </a>
+
+    <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+
+    <div class="nav-menu" id="navMenu">
+        <a href="{% url 'Bikes:list' %}">Products</a>
+        <a href="#">Compare</a>
+        <a href="{% url 'visit' %}">Visit Us</a>
+        <a href="{% url 'contact:query' %}">Contact Us </a>
+        {% if user.is_authenticated %}
+        <a href="#">Profile</a>
+        <a href="#">Wishlist</a>
+        <a href="{% url 'User:logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'User:login' %}">Login</a>
+        <a href="{% url 'User:register' %}">Sign Up</a>
+        {% endif %}
+    </div>
+</nav>
+{% block content %}
+
+<p>Avhad E-bike is a dealer of joy e-bikes located in Kalyan </p>
+
+
+{% endblock %}
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('navMenu');
+        menu.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('navMenu');
+        const menuBtn = event.target.closest('.menu-btn');
+
+        if (!menuBtn && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>

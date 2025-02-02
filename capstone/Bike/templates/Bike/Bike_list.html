@@ -1,0 +1,11 @@
+{% extends 'home.html' %}
+{% block content %}
+
+{% for x in prod %}
+{% if x.image %}
+<a href = "{% url 'Bikes:detail' pk=x.id %}" ><img src="{{ x.image.url }}" alt="nah" width="200"></a>
+{% endif %}
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block content %}
+
+
+<img src="{{ dets.image.url }}" alt="nah" width="200">
+<p>{{ dets.name }} </p>
+<p>{{ dets.description }} </p>
+<p>{{ dets.price }} </p>
+{% for key, value in dets.specifications.items %}
+<p>{{ key }}: {{ value }}</p>
+{% endfor %}
+{% if user.is_authenticated %}
+<form method="post" action="{% url 'Bikes:book_test_drive' dets.pk %}">
+    {% csrf_token %}
+    <input type="date" name="test_drive_date" required>
+    <button type="submit">Book Test Drive</button>
+</form>
+{% endif %}
+
+<a href="{% url 'User:toggle_wishlist' dets.id %}">
+    {% if bike in user.wishlist.all %}
+    Remove from Wishlist
+    {% else %}
+    Add to Wishlist
+    {% endif %}
+</a>
+
+
+
+{% endblock %}
