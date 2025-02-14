@@ -1,0 +1,258 @@
+/* Compare Page Styles with Animations */
+.compare-container {
+    padding: 6rem 5% 2rem;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.compare-container h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    color: #222;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Bike Selectors */
+.bike-selectors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.bike-select {
+    flex: 1;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.bike-select label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+}
+
+.bike-select select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.bike-select select:hover {
+    border-color: #ffa502;
+}
+
+.bike-select:hover {
+    transform: translateY(-5px);
+}
+
+.vs {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e63946;
+    animation: pulse 1.5s infinite alternate;
+}
+
+/* Comparison Table */
+.comparison-table {
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+    color: #333;
+}
+
+.comparison-table th {
+    background: #f0f0f0;
+    font-weight: bold;
+}
+
+.comparison-table tr:hover {
+    background-color: rgba(255, 237, 214, 0.3);
+    transition: background-color 0.3s;
+}
+
+/* Features Comparison */
+.comparison-features {
+    padding: 3rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    animation: fadeInUp 1.3s ease-in-out;
+}
+
+.comparison-features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #222;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 28px;
+    height: 28px;
+    color: #e63946;
+}
+
+.feature-bikes {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.feature-bikes span {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.9rem;
+}
+
+.feature-bikes .has-feature {
+    background: #4caf50;
+    color: white;
+    font-weight: bold;
+}
+
+.feature-bikes .no-feature {
+    background: #f44336;
+    color: white;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+/* Footer Styles */
+footer {
+    background-color: #1d3557;
+    color: white;
+    padding: 2rem 5%;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #f1faee;
+}
+
+.footer-section a {
+    display: block;
+    color: #a8dadc;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #e63946;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    color: #a8dadc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: #e63946;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    padding-top: 1rem;
+    color: #a8dadc;
+}

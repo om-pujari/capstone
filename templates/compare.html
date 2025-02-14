@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MotoWorld - Compare Bikes</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="compare.css" />
+    <script src="compare.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">Avhad E-Bikes</div>
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./bikes.html">Our Bikes</a>
+                <a href="./compare.html" aria-current="page">Compare Bikes</a>
+                <a href="./maintenance.html">Maintenance</a>
+                <a href="./contact.html">Contact Us</a>
+                <a href="./login.html" class="login-btn">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="compare-container">
+        <h1>Compare Motorcycles</h1>
+        
+        <div class="bike-selectors">
+            <div class="bike-select">
+                <label for="bike1">Select First Bike</label>
+                <select id="bike1" onchange="updateComparison()">
+                    <option value="">Choose a bike...</option>
+                    <option value="supersport">SuperSport R</option>
+                    <option value="streetfighter">Street Fighter V4</option>
+                    <option value="adventure">Adventure 1250</option>
+                    <option value="cruiser">Cruiser Classic</option>
+                </select>
+            </div>
+            <div class="vs">VS</div>
+            <div class="bike-select">
+                <label for="bike2">Select Second Bike</label>
+                <select id="bike2" onchange="updateComparison()">
+                    <option value="">Choose a bike...</option>
+                    <option value="supersport">SuperSport R</option>
+                    <option value="streetfighter">Street Fighter V4</option>
+                    <option value="adventure">Adventure 1250</option>
+                    <option value="cruiser">Cruiser Classic</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th id="bike1Name">Bike 1</th>
+                        <th id="bike2Name">Bike 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Engine</td>
+                        <td id="bike1Engine">-</td>
+                        <td id="bike2Engine">-</td>
+                    </tr>
+                    <tr>
+                        <td>Power</td>
+                        <td id="bike1Power">-</td>
+                        <td id="bike2Power">-</td>
+                    </tr>
+                    <tr>
+                        <td>Torque</td>
+                        <td id="bike1Torque">-</td>
+                        <td id="bike2Torque">-</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td id="bike1Weight">-</td>
+                        <td id="bike2Weight">-</td>
+                    </tr>
+                    <tr>
+                        <td>Seat Height</td>
+                        <td id="bike1SeatHeight">-</td>
+                        <td id="bike2SeatHeight">-</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td id="bike1Price">-</td>
+                        <td id="bike2Price">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="comparison-features">
+            <h2>Feature Comparison</h2>
+            <div class="features-grid">
+                <!-- Features will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@motoworld.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="./maintenance.html">Book Maintenance</a>
+                <a href="./test-drive.html">Schedule Test Drive</a>
+                <a href="./contact.html">Support</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Avhad E-Bikes. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

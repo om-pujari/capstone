@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MotoWorld - Admin Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <script src="admin.js" defer></script>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="logo">MotoWorld Admin</div>
+            <nav class="admin-nav">
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#test-drives">Test Drive Requests</a>
+                <a href="#maintenance">Maintenance Requests</a>
+                <a href="#reviews">Customer Reviews</a>
+                <a href="#queries">Customer Queries</a>
+                <a href="#sales">Sales Analytics</a>
+            </nav>
+            <div class="admin-profile">
+                <img src="https://ui-avatars.com/api/?name=Admin+User" alt="Admin" class="admin-avatar">
+                <div class="admin-info">
+                    <p class="admin-name">Admin User</p>
+                    <a href="./logout.html" class="admin-logout">Logout</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Dashboard Overview</h1>
+                <div class="date-filter">
+                    <label for="dateRange">Time Period:</label>
+                    <select id="dateRange">
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month" selected>This Month</option>
+                        <option value="year">This Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Test Drive Requests</h3>
+                    <p class="stat-number">0</p>
+                    <p class="stat-label">Pending</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Maintenance Requests</h3>
+                    <p class="stat-number">0</p>
+                    <p class="stat-label">Active</p>
+                </div>
+                <div class="stat-card">
+                    <h3>New Reviews</h3>
+                    <p class="stat-number">0</p>
+                    <p class="stat-label">Pending</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Sales</h3>
+                    <p class="stat-number">$0</p>
+                    <p class="stat-label">This Month</p>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Sales Analytics</h3>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Popular Models</h3>
+                    <canvas id="modelsChart"></canvas>
+                </div>
+            </div>
+
+            <section id="recent-requests" class="admin-section">
+                <h2>Recent Requests</h2>
+                <div class="requests-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Type</th>
+                                <th>Model</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsTableBody">
+                            <!-- Table rows will be dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

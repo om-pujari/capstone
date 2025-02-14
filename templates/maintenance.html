@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MotoWorld - Maintenance Request</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="maintenance.css">
+    <script src="maintenance.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <nav class="main-nav">
+            <div class="logo">Avhad E-Bikes</div>
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./bikes.html">Our Bikes</a>
+                <a href="./compare.html">Compare Bikes</a>
+                <a href="./maintenance.html" aria-current="page">Maintenance</a>
+                <a href="./contact.html">Contact Us</a>
+                <a href="./login.html" class="login-btn">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="maintenance-container">
+        <!-- Hero Section -->
+        <section class="maintenance-hero">
+            <h1>Motorcycle Maintenance Services</h1>
+            <p>Keep your bike in perfect condition with our expert maintenance services</p>
+        </section>
+
+        <!-- Service Cards -->
+        <section class="service-types">
+            <h2>Available Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Regular Service</h3>
+                    <ul>
+                        <li>Oil Change</li>
+                        <li>Filter Replacement</li>
+                        <li>Basic Inspection</li>
+                        <li>Chain Maintenance</li>
+                    </ul>
+                    <button onclick="bookService('regular')">Book Now</button>
+                </div>
+                <div class="service-card">
+                    <h3>Major Service</h3>
+                    <ul>
+                        <li>Complete Inspection</li>
+                        <li>Fluid Changes</li>
+                        <li>Brake Service</li>
+                        <li>Tire Check</li>
+                    </ul>
+                    <button onclick="bookService('major')">Book Now</button>
+                </div>
+                <div class="service-card">
+                    <h3>Custom Service</h3>
+                    <ul>
+                        <li>Specific Issues</li>
+                        <li>Custom Modifications</li>
+                        <li>Performance Upgrades</li>
+                        <li>Diagnostic Tests</li>
+                    </ul>
+                    <button onclick="bookService('custom')">Book Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal for Maintenance Form -->
+        <div id="maintenanceModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Book Maintenance Service</h2>
+                <form id="maintenanceForm">
+                    <div class="form-group">
+                        <label for="bikeModel">Your Bike Model</label>
+                        <select id="bikeModel" required>
+                            <option value="">Select your bike...</option>
+                            <option value="supersport">SuperSport R</option>
+                            <option value="streetfighter">Street Fighter V4</option>
+                            <option value="adventure">Adventure 1250</option>
+                            <option value="cruiser">Cruiser Classic</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">Service Type</label>
+                        <select id="serviceType" required>
+                            <option value="regular">Regular Service</option>
+                            <option value="major">Major Service</option>
+                            <option value="custom">Custom Service</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceDate">Preferred Date</label>
+                        <input type="date" id="serviceDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceTime">Preferred Time</label>
+                        <select id="serviceTime" required>
+                            <option value="9:00">9:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="issues">Additional Issues/Comments</label>
+                        <textarea id="issues" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Schedule Service</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function bookService(type) {
+            document.getElementById('serviceType').value = type;
+            document.getElementById('maintenanceModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('maintenanceModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('maintenanceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: info@motoworld.com</p>
+            <p>Phone: (555) 123-4567</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="./maintenance.html">Book Maintenance</a>
+            <a href="./test-drive.html">Schedule Test Drive</a>
+            <a href="./contact.html">Support</a>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 MotoWorld. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
