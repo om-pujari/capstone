@@ -25,7 +25,6 @@ urlpatterns = [
     path(r'',views.Home.as_view(),name='home'),
     path("admin/", admin.site.urls),
     path('Products/',include('Bike.urls',namespace="Bikes")),
-    path('visit/',views.Visit.as_view(),name='visit'),
     path('contact/',include('Query.urls', namespace="contact")),
     path('user/', include('User.urls',namespace="User")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

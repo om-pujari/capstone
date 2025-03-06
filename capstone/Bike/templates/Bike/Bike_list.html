@@ -1,11 +1,96 @@
 {% extends 'home.html' %}
 {% block content %}
+<main class="pt-5 mt-5">
+    <!-- Bikes Catalog Section -->
+    <section class="bikes-catalog py-5">
+        <div class="container">
+            <h1 class="text-center mb-5">Our Joy E-Bike Collection</h1>
 
-{% for x in prod %}
-{% if x.image %}
-<a href = "{% url 'Bikes:detail' pk=x.id %}" ><img src="{{ x.image.url }}" alt="nah" width="200"></a>
-{% endif %}
-{% endfor %}
+            <!-- Filters -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <select class="form-select" id="priceFilter">
+                        <option value="">All Prices</option>
+                        <option value="0-100000">Under ₹1,00,000</option>
+                        <option value="100000-150000">₹1,00,000 - ₹1,50,000</option>
+                        <option value="150000">Above ₹1,50,000</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search bikes...">
+                </div>
+            </div>
 
+            <!-- Bikes Grid -->
+            <div class="row g-4" id="bikesGrid">
+                {% for x in prod %}
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="bike-card h-100">
+                        {% if x.image %}
+                        <a href="{% url 'Bikes:detail' pk=x.id %}">
+                            <img src="{{ x.image.url }}" class="bike-image" alt="{{ x.name }}">
+                        </a>
+                        {% endif %}
+                        <div class="card-body p-4">
+                            <h5 class="card-title">{{ x.name }}</h5>
+                            <p class="card-text">{{ x.description }}</p> <!-- can use |intcomma below -->
+                            <p class="card-text"><strong>₹{{ x.price|floatformat:0 }}</strong></p>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'Bikes:detail' pk=x.id %}" class="btn btn-primary">View Details</a>
+                                <a href="{% url 'Bikes:compare' %}?bike_one={{ x.id }}" class="btn btn-outline-secondary">Compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
 
+<!-- Add the necessary JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setupFilters();
+        AOS.init();
+    });
+
+    function setupFilters() {
+        const priceFilter = document.getElementById('priceFilter');
+        const searchInput = document.getElementById('searchInput');
+        const bikeItems = document.querySelectorAll('#bikesGrid .col-md-4');
+
+        function filterBikes() {
+            const priceRange = priceFilter.value;
+            const searchTerm = searchInput.value.toLowerCase();
+
+            bikeItems.forEach(item => {
+                const bikeCard = item.querySelector('.bike-card');
+                const bikeName = bikeCard.querySelector('.card-title').textContent.toLowerCase();
+                const bikeDesc = bikeCard.querySelector('.card-text').textContent.toLowerCase();
+                const bikePrice = parseFloat(bikeCard.querySelector('strong').textContent.replace(/[₹,]/g, ''));
+
+                let showItem = true;
+
+                if (priceRange) {
+                    const [min, max] = priceRange.split('-').map(Number);
+                    if (max && (bikePrice < min || bikePrice > max)) {
+                        showItem = false;
+                    } else if (!max && bikePrice < min) {
+                        showItem = false;
+                    }
+                }
+
+                if (searchTerm && !bikeName.includes(searchTerm) && !bikeDesc.includes(searchTerm)) {
+                    showItem = false;
+                }
+
+                item.style.display = showItem ? 'block' : 'none';
+            });
+        }
+
+        priceFilter.addEventListener('change', filterBikes);
+        searchInput.addEventListener('input', filterBikes);
+    }
+</script>
 {% endblock %}

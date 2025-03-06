@@ -1,0 +1,294 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --transition-speed: 0.3s;
+}
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    background-color: #212529;
+    color: #fff;
+}
+
+/* Navigation */
+.navbar {
+    padding: 1rem 0;
+    transition: all var(--transition-speed);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: color var(--transition-speed);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: all var(--transition-speed);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section
+.hero-section {
+
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url('{% static "images/hero-ebike.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+} */
+
+/* Featured Bikes */
+.featured-bikes {
+    padding: 80px 0;
+    background: rgba(255,255,255,0.02);
+}
+
+.best-seller-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.bike-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform var(--transition-speed);
+    background: rgba(255,255,255,0.05);
+}
+
+.bike-card:hover {
+    transform: translateY(-10px);
+}
+
+.bike-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Why Choose Us Section */
+.feature-card {
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    transition: transform var(--transition-speed);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a;
+    color: white;
+    margin-top: 3rem;
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.footer p {
+    color: #adb5bd;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color var(--transition-speed);
+    display: inline-block;
+    padding: 0.25rem 0;
+}
+
+.footer a:hover {
+    color: var(--primary-color);
+}
+
+.footer ul {
+    margin: 0;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 0.75rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    font-size: 1.75rem;
+    color: #adb5bd;
+    transition: all var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer .copyright {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    color: #6c757d;
+}
+
+/* Animations */
+[data-aos] {
+    opacity: 0;
+    transition-duration: 1s;
+    transition-property: opacity, transform;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+/* Service Cards */
+.service-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 2rem;
+    height: 100%;
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* Form Styling */
+.form-container {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .feature-card {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Maintenance Tips Popup */
+.maintenance-tip-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 350px;
+    background: rgba(33, 37, 41, 0.95);
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1050;
+    transform: translateY(150%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.maintenance-tip-popup.show {
+    transform: translateY(0);
+}
+
+.maintenance-tip-popup .tip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.maintenance-tip-popup .tip-header h5 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.maintenance-tip-popup .close-tip {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 1.25rem;
+    transition: color var(--transition-speed);
+}
+
+.maintenance-tip-popup .close-tip:hover {
+    color: var(--primary-color);
+}
+
+.maintenance-tip-popup .tip-content {
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Responsive Design for Popup */
+@media (max-width: 576px) {
+    .maintenance-tip-popup {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+    }
+}

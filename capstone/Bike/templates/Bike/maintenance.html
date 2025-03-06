@@ -1,0 +1,67 @@
+{% extends 'home.html' %}
+{% block content %}
+<main class="pt-5 mt-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Maintenance Services</h1>
+
+        <!-- Services Section -->
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+                <div class="service-card text-center">
+                    <i class="fas fa-tools service-icon"></i>
+                    <h3>Regular Service</h3>
+                    <p>Basic maintenance including inspection, cleaning, and basic adjustments.</p>
+                    <p class="fw-bold">₹999</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card text-center">
+                    <i class="fas fa-battery-full service-icon"></i>
+                    <h3>Battery Service</h3>
+                    <p>Complete battery health check and optimization for better performance.</p>
+                    <p class="fw-bold">₹1,499</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card text-center">
+                    <i class="fas fa-cogs service-icon"></i>
+                    <h3>Full Service</h3>
+                    <p>Comprehensive service including all systems and components.</p>
+                    <p class="fw-bold">₹2,999</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container" data-aos="fade-up">
+                    <h2 class="text-center mb-4">Hello, {{ user.username }}! Book Your Maintenance Service</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_bike" class="form-label">Select Bike Model:</label>
+                            {{ form.bike }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_service_type" class="form-label">Select Service Type:</label>
+                            {{ form.service_type }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_service_date" class="form-label">Select Service Date:</label>
+                            {{ form.service_date }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_comments" class="form-label">Additional Comments:</label>
+                            {{ form.comments }}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Book Service</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

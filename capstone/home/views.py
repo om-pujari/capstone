@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,ListView
+from Bike import models
+
+
 # Create your views here.
 
-class Home(TemplateView):
+class Home(ListView):
     template_name = 'home.html'
-
-
-class Visit(TemplateView):
-    template_name = 'visit-us.html'
+    model = models.Bike
+    context_object_name = "bike_prod"

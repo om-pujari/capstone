@@ -27,11 +27,27 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Replace with your email host
+EMAIL_PORT = 587  # Usually 587 for TLS or 465 for SSL
+EMAIL_USE_TLS = True  # Use TLS (recommended)
+EMAIL_USE_SSL = False  # Set to True if your provider requires SSL (not common)
+EMAIL_HOST_USER = 'omgpujarie@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'vbwv ipun olnh ibkn'  # Use App Password if needed
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Default "from" email for Django messages
+
+
 
 #User authentication
 AUTH_USER_MODEL = 'User.User'
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'User:login'
+
+AUTHENTICATION_BACKENDS = [
+    'User.backends.EmailPhoneBackend',  # Replace 'User' with your app name
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 # Application definition
 
@@ -46,6 +62,7 @@ INSTALLED_APPS = [
     "Bike",
     "Query",
     "TestDrive",
+   # "widget_tweaks",
 ]
 
 MIDDLEWARE = [

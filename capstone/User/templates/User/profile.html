@@ -1,35 +1,207 @@
 {% extends 'home.html' %}
 {% block content %}
-<h2>My Profile</h2>
+<div class="profile-container">
+    <a href="{% url 'home' %}" class="back-button">&larr; Back to Home</a>
 
-<!-- User Info Form -->
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Profile</button>
-</form>
+    <div class="profile-card">
+        <h3>{{ user.get_full_name|default:user.name }}</h3>
+        <p class="text-muted">email: {{ user.email }}</p>
+        <p class="text-muted">Username: {{ user.username }}</p>
+    </div>
 
-<hr>
+    <div class="content-section">
+        <h4>Booking History</h4>
+        <ul id="booking-history">
+            {% for request in test_drive_requests %}
+            <li>
+                <strong>Bike:</strong> {{ request.bike.name }}<br>
+                <strong>Date:</strong> {{ request.date }}<br>
+                <strong>Status:</strong> {{ request.get_status_display }}
+            </li>
+            {% empty %}
+            <li>No test drive bookings found.</li>
+            {% endfor %}
+        </ul>
+    </div>
 
-<!-- User Queries -->
-<h3>My Queries</h3>
-<ul>
-    {% for query in queries %}
-    <li>{{ query.message }} - <strong>Status:</strong> {{ query.status }}</li>
-    {% empty %}
-    <li>No queries found.</li>
-    {% endfor %}
-</ul>
+    <div class="content-section">
+        <h4>Maintenance Requests</h4>
+        <ul id="maintenance-history">
+            {% for request in maintenance_requests %}
+            <li>
+                <strong>Bike:</strong> {{ request.bike.name }}<br>
+                <strong>Service Type:</strong> {{ request.service_type.name }}<br>
+                <strong>Status:</strong> {{ request.get_status_display }}<br>
+                <strong>Comments:</strong> {{ request.comments|default:"No comments" }}
+            </li>
+            {% empty %}
+            <li>No maintenance requests found.</li>
+            {% endfor %}
+        </ul>
+    </div>
 
-<hr>
+    <div class="content-section">
+        <h4>My Wishlist</h4>
+        <ul id="wishlist">
+            {% for bike in wishlist %}
+            <li>
+                {{ bike.name }} - <a href="{% url 'Bikes:detail' bike.id %}">View Details</a>
+            </li>
+            {% empty %}
+            <li>No items in wishlist.</li>
+            {% endfor %}
+        </ul>
+    </div>
 
-<!-- Wishlist Items -->
-<h3>My Wishlist</h3>
-<ul>
-    {% for bike in wishlist %}
-    <li>{{ bike.name }} - <a href="{% url 'Bikes:detail' bike.id %}">View</a></li>
-    {% empty %}
-    <li>No items in wishlist.</li>
-    {% endfor %}
-</ul>
+    <div class="content-section form-container">
+        <h4>Edit Profile</h4>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+
+    <div class="content-section settings-container">
+        <h4>Settings</h4>
+        <button onclick="logoutUser()" style="background: red;">Logout</button>
+    </div>
+</div>
+
+<script>
+    function logoutUser() {
+        window.location.href = "{% url 'User:logout' %}";
+    }
+</script>
+
+<style>
+    /* (Previous styling remains the same) */
+    :root {
+        --primary-color: #007bff;
+    }
+    body {
+        background-color: #121212;
+        font-family: Arial, sans-serif;
+    }
+    .profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        color: #fff;
+    }
+    .back-button {
+        align-self: flex-start;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        background: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .profile-card {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .content-section {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 2rem;
+        margin-top: 2rem;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .form-container textarea,
+    .form-container button,
+    .form-container input {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 5px;
+        border: none;
+        margin-top: 0.5rem;
+        background: #333;
+        color: white;
+    }
+    .settings-container button {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 5px;
+        margin-top: 0.5rem;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.95);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+    }
+    .modal.active {
+        display: block;
+    }
+    .modal h4 {
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+    }
+    .modal input {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-top: 0.5rem;
+        background: #222;
+        color: white;
+    }
+    .modal button {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 5px;
+        cursor: pointer;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        font-weight: bold;
+    }
+    #booking-history li,
+    #maintenance-history li,
+    #wishlist li {
+        background: rgba(255,255,255,0.05);
+        margin-bottom: 0.5rem;
+        padding: 1rem;
+        border-radius: 5px;
+    }
+    form p {
+        margin-bottom: 1rem;
+    }
+    form p label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: white;
+    }
+    form p input {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 5px;
+        border: none;
+        background: #333;
+        color: white;
+    }
+</style>
 {% endblock %}
